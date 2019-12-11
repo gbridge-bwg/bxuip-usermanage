@@ -9,19 +9,16 @@
             <th>주소</th>
             <th>삭제</th>
             <th>수정</th> 
-            <!-- rollback을 위한 테스트  -->
         </tr>
     </thead>
     <tbody>
-        <tr v-for="(tableSample, index) in tableSamples" :key="tableSample.index">
+        <tr v-for="(alluser, index) in allusers" :key="alluser.index">
             <td>{{index+1}}</td>
-            <td>{{tableSample.name}}</td>
-            <td>{{tableSample.tel}}</td>
-            <td>{{tableSample.address}}</td>
-            <td><button id="gb-button" v-on:click="removeUser(tableSample, index)">삭제</button></td>
-            <td><router-link id="gb-button" to="/change" v-on:click.native="goChange(tableSample)">수정</router-link></td>
-
-<!-- <router-link id="gb-button" to="/change" v-on:click="goChange(tableSample)">수정</router-link> -->
+            <td>{{alluser.name}}</td>
+            <td>{{alluser.tel}}</td>
+            <td>{{alluser.address}}</td>
+            <td><button id="gb-button" v-on:click="removeUser(alluser, index)">삭제</button></td>
+            <td><router-link id="gb-button" to="/change" v-on:click.native="goChange(alluser)">수정</router-link></td>
 
     <modal v-if="showModal" v-on:close="showModal=false">
       <h3 id="modal-header" slot="header">삭제알림</h3>
@@ -47,41 +44,30 @@ export default {
   data() {
     return {
       showModal : false,
-      tableSamples : [
-        {name : '일길동', tel : '1111-1111', address : '서울 동대문구'},
-        {name : '이길동', tel : '2222-2222', address : '경기도 성남시'},
-        {name : '삼길동', tel : '3333-3333', address : '서울 성북구'},
-        {name : '사길동', tel : '4444-4444', address : '서울 성동구'},
-        {name : '오길동', tel : '5555-5555', address : '제주도'},
-        {name : '육길동', tel : '6666-6666', address : '울릉도'},
-      ]
+      allusers : this.$store.state.allusers,
+      showChange : false  
     }
   },
   methods : {
-    removeUser(tableSample, index) {
-      console.log(tableSample+" "+index);
-      console.log("삭제대상 :"+tableSample.name );
+    removeUser(alluser, index) {
+      console.log("index-now : "+index);
+      console.log("삭제대상 :"+alluser.name );
       
       this.showModal = !this.showModal;
-      this.tableSamples.splice(index,1)
+      this.allusers.splice(index,1)
       
     },
-    goChange(tableSample) {
-      console.log("전송될 데이터 : "+tableSample.name);
-      console.log("전송될 데이터 : "+tableSample.tel);
-      console.log("전송될 데이터 : "+tableSample.address);
-      this.$store.state.uName = tableSample.name
-      this.$store.state.uTel = tableSample.tel
-      this.$store.state.uAddress = tableSample.address
-      console.log("저장값 : "+this.$store.state.uName);
-      console.log("저장값 : "+this.$store.state.uTel);
-      console.log("저장값 : "+this.$store.state.uAddress);
+    goChange(alluser) {
+      console.log("전송될 데이터 : "+alluser.name);
+      console.log("전송될 데이터 : "+alluser.tel);
+      console.log("전송될 데이터 : "+alluser.address);
+
       
       // eventBus.doTest(tableSample.name);
     }
   },  
   components : {
-    Modal : Modal
+    Modal : Modal,
   }
 }
 </script>
