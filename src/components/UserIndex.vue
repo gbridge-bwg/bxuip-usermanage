@@ -8,7 +8,8 @@
             <th>전화번호</th>
             <th>주소</th>
             <th>삭제</th>
-            <th>수정</th>
+            <th>수정</th> 
+            <!-- rollback을 위한 테스트  -->
         </tr>
     </thead>
     <tbody>
