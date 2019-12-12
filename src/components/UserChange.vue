@@ -1,5 +1,5 @@
 <template>
-  <div>User Change area!!!
+  <div><h3>수정전data</h3>
     <div id="table-wrap">
     <table>
         <thead>
@@ -7,7 +7,27 @@
             <th>이름</th>  
             <th>전화번호</th>
             <th>주소</th>
-            <th>GET</th>
+
+        </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(beforeChangeUser) in beforeChangeUsers" :key="beforeChangeUser.index">
+        <td>{{beforeChangeUser.name}}</td>
+        <td>{{beforeChangeUser.tel}}</td>
+        <td>{{beforeChangeUser.address}}</td>
+      </tr>
+    </tbody> 
+    </table>
+    </div>
+    <br><br><br>
+    <h3>수정할 data입력하기</h3>
+    <div id="table-wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>이름</th>  
+            <th>전화번호</th>
+            <th>주소</th>
             <th>수정완료</th>
         </tr>
     </thead>
@@ -25,12 +45,8 @@
             <input id="input2-text" v-model="uaddress" type="text" placeholder="write address" /></div>
         </td>
         <td>
-            <button id="gb-button" v-on:click="getData">GET</button>
+            <router-link to="/" id="gb-button" v-on:click.native="changeData">수정완료</router-link>
         </td>
-        <td>
-            <button id="gb-button">수정완료</button>
-        </td>
-      
     </tbody> 
     </table>
     </div>
@@ -43,21 +59,30 @@ import {eventBus} from '../main'
 export default {
   data() {
     return {
-          uname : 'username',
-          utel : 'usertel',
-          uaddress : 'useraddress'
+      beforeChangeUsers : this.$store.state.beforeChangeUsers,
+      uname : '',
+      utel : '',
+      uaddress : '',
+
     }
   },
-  // this.$store.state.uName
   methods : {
-    getData : function() {
-      console.log("수신값 : "+this.$store.state.uName);
-      console.log("수신값 : "+this.$store.state.uTel);
-      console.log("수신값 : "+this.$store.state.uAddress);
-      this.uname = this.$store.state.uName;
-      this.utel = this.$store.state.uTel;
-      this.uaddress = this.$store.state.uAddress;
+    changeData() {
+      this.beforeChangeUsers[0].name = this.uname;
+      this.beforeChangeUsers[0].tel = this.utel;
+      this.beforeChangeUsers[0].address = this.uaddress;
+
+      let targetIndex = this.beforeChangeUsers[0].INDEX;
+      // allusers 라는 객체배열을 allusers라는 객체배열의 길이만큼 탐색
+      let tmp = this.$store.state.allusers;
       
+      for(let i =0; i < tmp.length; i++) {
+        if(tmp[i].INDEX == targetIndex) {
+          tmp[i].name = this.beforeChangeUsers[0].name;
+          tmp[i].tel = this.beforeChangeUsers[0].tel;
+          tmp[i].address = this.beforeChangeUsers[0].address;
+        }
+      }
     }
   }
 }

@@ -18,7 +18,7 @@
             <td>{{alluser.tel}}</td>
             <td>{{alluser.address}}</td>
             <td><button id="gb-button" v-on:click="removeUser(alluser, index)">삭제</button></td>
-            <td><router-link id="gb-button" to="/change" v-on:click.native="goChange(alluser)">수정</router-link></td>
+            <td><router-link id="gb-button" to="/change" v-on:click.native="goChange(alluser, index)">수정</router-link></td>
 
     <modal v-if="showModal" v-on:close="showModal=false">
       <h3 id="modal-header" slot="header">삭제알림</h3>
@@ -30,7 +30,6 @@
         </tr>
     </tbody>
     </table>
-
   </div>
 
 </template>
@@ -57,13 +56,18 @@ export default {
       this.allusers.splice(index,1)
       
     },
-    goChange(alluser) {
-      console.log("전송될 데이터 : "+alluser.name);
-      console.log("전송될 데이터 : "+alluser.tel);
-      console.log("전송될 데이터 : "+alluser.address);
+    goChange(alluser, index) {
 
-      
-      // eventBus.doTest(tableSample.name);
+      this.$store.state.beforeChangeUsers[0].name = alluser.name
+      this.$store.state.beforeChangeUsers[0].tel = alluser.tel
+      this.$store.state.beforeChangeUsers[0].address = alluser.address
+      this.$store.state.beforeChangeUsers[0].INDEX = index
+
+      console.log("전송 및 저장될 데이터 : ");
+      console.log(this.$store.state.beforeChangeUsers[0].name);
+      console.log(this.$store.state.beforeChangeUsers[0].tel);
+      console.log(this.$store.state.beforeChangeUsers[0].address);
+      console.log(this.$store.state.beforeChangeUsers[0].INDEX);
     }
   },  
   components : {
@@ -183,6 +187,7 @@ td {
     border-color: initial;
     height: 40px !important;
     font-size: 12px !important;
+    width: auto;
     text-align: center;
     text-overflow: ellipsis;
     border-left-width: 0;
