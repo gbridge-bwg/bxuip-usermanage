@@ -57,8 +57,7 @@ export default {
       console.log("======저장값============");
       console.log("name : "+this.uname);
       console.log("tel : "+this.utel);
-      console.log("address : "+this.uaddress);
- 
+      console.log("address : "+this.uaddress); 
       this.allusers.push({name : this.uname, tel : this.utel, address : this.uaddress})
     }
 

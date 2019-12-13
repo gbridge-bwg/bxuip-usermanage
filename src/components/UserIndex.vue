@@ -53,8 +53,8 @@ export default {
   },
   methods : {
     removeUser(alluser, index) {
-      console.log("삭제대상 :"+alluser.name );
       
+      console.log("삭제대상 :"+alluser.name );
       this.showModal = !this.showModal;
       this.allusers.splice(index,1)
       
@@ -64,9 +64,6 @@ export default {
       this.$store.state.beforeChangeUsers[0].name = alluser.name
       this.$store.state.beforeChangeUsers[0].tel = alluser.tel
       this.$store.state.beforeChangeUsers[0].address = alluser.address
-
-
-
       console.log("전송 및 저장될 데이터 : ");
       console.log(this.$store.state.beforeChangeUsers[0].name);
       console.log(this.$store.state.beforeChangeUsers[0].tel);

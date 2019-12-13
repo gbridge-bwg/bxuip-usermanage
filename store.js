@@ -20,3 +20,7 @@ export const store = new Vuex.Store({
       beforeChangeUsers : [{name : '', tel : '', address : ''}]
   }
 });
+
+
+
+
