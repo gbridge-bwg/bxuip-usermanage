@@ -30,6 +30,10 @@
         </tr>
     </tbody>
     </table>
+    <br><br>
+    <router-link id="gb-button" to="/change" >수정page로 이동</router-link>
+    <br><br>
+    <router-link id="gb-button" to="/regist" >가입page로 이동</router-link>
   </div>
 
 </template>
@@ -49,7 +53,6 @@ export default {
   },
   methods : {
     removeUser(alluser, index) {
-      console.log("index-now : "+index);
       console.log("삭제대상 :"+alluser.name );
       
       this.showModal = !this.showModal;
@@ -61,13 +64,14 @@ export default {
       this.$store.state.beforeChangeUsers[0].name = alluser.name
       this.$store.state.beforeChangeUsers[0].tel = alluser.tel
       this.$store.state.beforeChangeUsers[0].address = alluser.address
-      this.$store.state.beforeChangeUsers[0].INDEX = index
+
+
 
       console.log("전송 및 저장될 데이터 : ");
       console.log(this.$store.state.beforeChangeUsers[0].name);
       console.log(this.$store.state.beforeChangeUsers[0].tel);
       console.log(this.$store.state.beforeChangeUsers[0].address);
-      console.log(this.$store.state.beforeChangeUsers[0].INDEX);
+
     }
   },  
   components : {

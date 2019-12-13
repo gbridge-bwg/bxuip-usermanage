@@ -30,6 +30,10 @@
     </tbody> 
     </table>
     </div>
+    <br><br>
+    <router-link id="gb-button" to="/change" >수정page로 이동</router-link>
+    <br><br>
+    <router-link id="gb-button" to="/" >메인화면으로 이동</router-link>
   </div>
 
 </template>
@@ -54,20 +58,8 @@ export default {
       console.log("name : "+this.uname);
       console.log("tel : "+this.utel);
       console.log("address : "+this.uaddress);
-      console.log("INDEX : "+this.allusers.length);
-      
-      this.allusers.push({name : this.uname, tel : this.utel, address : this.uaddress,INDEX : this.allusers.length})
-      // let targetIndex = this.beforeChangeUsers[0].INDEX;
-      // // allusers 라는 객체배열을 allusers라는 객체배열의 길이만큼 탐색
-      // let tmp = this.$store.state.allusers;
-      
-      // for(let i =0; i < tmp.length; i++) {
-      //   if(tmp[i].INDEX == targetIndex) {
-      //     tmp[i].name = this.beforeChangeUsers[0].name;
-      //     tmp[i].tel = this.beforeChangeUsers[0].tel;
-      //     tmp[i].address = this.beforeChangeUsers[0].address;
-      //   }
-      // }
+ 
+      this.allusers.push({name : this.uname, tel : this.utel, address : this.uaddress})
     }
 
   }

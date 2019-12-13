@@ -50,6 +50,10 @@
     </tbody> 
     </table>
     </div>
+    <br><br>
+    <router-link id="gb-button" to="/regist" >가입화면으로 이동</router-link>
+    <br><br>
+    <router-link id="gb-button" to="/" >메인화면으로 이동</router-link>
   </div>
 </template>
 
@@ -68,21 +72,25 @@ export default {
   },
   methods : {
     changeData() {
+      let targetName = this.beforeChangeUsers[0].name;
+
       this.beforeChangeUsers[0].name = this.uname;
       this.beforeChangeUsers[0].tel = this.utel;
       this.beforeChangeUsers[0].address = this.uaddress;
-
-      let targetIndex = this.beforeChangeUsers[0].INDEX;
+      
       // allusers 라는 객체배열을 allusers라는 객체배열의 길이만큼 탐색
       let tmp = this.$store.state.allusers;
       
       for(let i =0; i < tmp.length; i++) {
-        if(tmp[i].INDEX == targetIndex) {
+        if(tmp[i].name == targetName) {
           tmp[i].name = this.beforeChangeUsers[0].name;
           tmp[i].tel = this.beforeChangeUsers[0].tel;
           tmp[i].address = this.beforeChangeUsers[0].address;
         }
       }
+      this.beforeChangeUsers[0].name = '수정대상없음';
+      this.beforeChangeUsers[0].tel = '수정대상없음';
+      this.beforeChangeUsers[0].address = '수정대상없음';
     }
   }
 }
